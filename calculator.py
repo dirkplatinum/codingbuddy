@@ -23,3 +23,32 @@ def divide(a, b):
         ZeroDivisionError: If ``b`` is zero.
     """
     return a / b
+
+
+def calculate(a, operator, b):
+    """Return the result of applying ``operator`` to ``a`` and ``b``.
+
+    Args:
+        a: The left operand.
+        operator: One of ``"+"``, ``"-"``, ``"*"`` or ``"/"``.
+        b: The right operand.
+
+    Returns:
+        The result of the operation, or the message
+        ``"Error: division by zero"`` when dividing by zero.
+
+    Raises:
+        ValueError: If ``operator`` is not a recognised symbol.
+    """
+    operations = {
+        "+": add,
+        "-": subtract,
+        "*": multiply,
+        "/": divide,
+    }
+    if operator not in operations:
+        raise ValueError(f"Unknown operator: {operator}")
+    try:
+        return operations[operator](a, b)
+    except ZeroDivisionError:
+        return "Error: division by zero"
